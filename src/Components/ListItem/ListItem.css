@@ -4,6 +4,7 @@
 }
 
 .listing-item__title-avatar {
+    height: 50%;
     display: flex;
     justify-content: space-between;
 }

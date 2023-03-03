@@ -21,84 +21,86 @@ import AlertSVG from '../../img/menu/alert.svg'
 export default function Menu() {
   return (
     <div className='menu-container'>
-      <div className='menu-logo'>
-        <img src={Logo} alt='logo'/>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={ResultSVG} alt='results'/>
-          Итоги
+      <div className='menu-container__sticky'>
+        <div className='menu-logo'>
+          <img src={Logo} alt='logo'/>
         </div>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={OrderSVG} alt="orders" />
-          Заказы
+        <div className="menu-button">
+          <div>
+            <img src={ResultSVG} alt='results'/>
+            Итоги
+          </div>
         </div>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={MessageSVG} alt="" />
-          Сообщения
+        <div className="menu-button">
+          <div>
+            <img src={OrderSVG} alt="orders" />
+            Заказы
+          </div>
         </div>
-      </div>
-      <div className="menu-button menu-button__active">
-        <div>
-          <img src={CallSVG} alt="" />
-          Звонки
+        <div className="menu-button">
+          <div>
+            <img src={MessageSVG} alt="" />
+            Сообщения
+          </div>
         </div>
-        <img src={NewSVG} alt="new" className='menu-button__new'/>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={AgentSVG} alt="" />
-          Контрагенты
+        <div className="menu-button menu-button__active">
+          <div>
+            <img src={CallSVG} alt="" />
+            Звонки
+          </div>
+          <img src={NewSVG} alt="new" className='menu-button__new'/>
         </div>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={DocumentSVG} alt="" />
-          Документы
+        <div className="menu-button">
+          <div>
+            <img src={AgentSVG} alt="" />
+            Контрагенты
+          </div>
         </div>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={ExecutorSVG} alt="" />
-          Исполнители
+        <div className="menu-button">
+          <div>
+            <img src={DocumentSVG} alt="" />
+            Документы
+          </div>
         </div>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={ReportSVG} alt="" />
-          Отчеты
+        <div className="menu-button">
+          <div>
+            <img src={ExecutorSVG} alt="" />
+            Исполнители
+          </div>
         </div>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={LibrarySVG} alt="" />
-          База знаний
+        <div className="menu-button">
+          <div>
+            <img src={ReportSVG} alt="" />
+            Отчеты
+          </div>
         </div>
-      </div>
-      <div className="menu-button">
-        <div>
-          <img src={SettingSVG} alt="" />
-          Настройки
+        <div className="menu-button">
+          <div>
+            <img src={LibrarySVG} alt="" />
+            База знаний
+          </div>
         </div>
-      </div>
+        <div className="menu-button">
+          <div>
+            <img src={SettingSVG} alt="" />
+            Настройки
+          </div>
+        </div>
 
-      <div className='menu-extra'>
-        <button className='menu-extra-button'>
-          <div>
-            Добавить заказ
-          </div>
-          <img src={AddSVG} alt="add" />
-        </button>
-        <button className='menu-extra-button'>
-          <div>
-            Оплата
-          </div>
-          <img src={AlertSVG} alt="add" />
-        </button>
+        <div className='menu-extra'>
+          <button className='menu-extra-button'>
+            <div>
+              Добавить заказ
+            </div>
+            <img src={AddSVG} alt="add" />
+          </button>
+          <button className='menu-extra-button'>
+            <div>
+              Оплата
+            </div>
+            <img src={AlertSVG} alt="add" />
+          </button>
+        </div>
       </div>
     </div>
   )
