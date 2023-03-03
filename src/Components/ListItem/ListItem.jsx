@@ -1,9 +1,5 @@
 import React, {useState} from 'react'
-import GreatRate from '../Rate/GreatRate/GreatRate'
-import GoodRate from '../Rate/GoodRate/GoodRate'
-import BadRate from '../Rate/BadRate/BadRate'
 import './ListItem.css'
-import RecognizeRate from '../Rate/RecognizeRate/RecognizeRate'
 
 import AudioTrack from '../../audio/1.mp3'
 
