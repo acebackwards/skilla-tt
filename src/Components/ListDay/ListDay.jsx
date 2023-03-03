@@ -1,20 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getDayList } from '../../Api/Api'
 import ListItem from '../ListItem/ListItem'
 import './ListDay.css'
 
 
 
-export default function ListDay({day, calls, totalAmount}) {
+export default function ListDay({day, calls}) {
   // console.log(day)
+  const [totalAmount, setTotalAmount] = useState(0)
   let today = new Date()
   let now = today.toISOString().split('T')[0]
+
+  useEffect(() => {
+    getDayList(day)
+    .then(data => setTotalAmount(() => data))
+  }, [])
   function whichDay () {
     if (day === now) {
       return null
     } else if ((new Date(now) - new Date(day)) / (1000 * 60 * 60 * 24) === 1) {
       return <div className='list-day'>
         вчера
-        <div className='list-day__amount'>67</div>
+        <div className='list-day__amount'>{totalAmount ? totalAmount : null}</div>
       </div>
     } else {
       return <div className='list-day'>
@@ -23,7 +30,7 @@ export default function ListDay({day, calls, totalAmount}) {
         day: 'numeric',
         month: 'long'
       })}
-      <div className='list-day__amount'>67</div>
+      <div className='list-day__amount'>{totalAmount ? totalAmount : null}</div>
     </div>
     }
   }

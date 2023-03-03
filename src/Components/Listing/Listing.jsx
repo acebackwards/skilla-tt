@@ -3,14 +3,6 @@ import './Listing.css'
 import ListDay from '../ListDay/ListDay'
 import { getList } from '../../Api/Api'
 
-
-// const getDate = () => {
-//   let today = new Date()
-//   let now = today.toISOString().split('T')[0]
-//   console.log(now)
-// }
-// getDate()
-
 export default function Listing() {
   const [calls, setCalls] = useState([])
   const [dateList, setDateList] = useState([])
@@ -41,7 +33,7 @@ export default function Listing() {
                 <div className="listing-item__title-duration">Длительность</div>
             </div>
             {dateList?.map(date => {
-              return <ListDay day={date} calls={calls} totalAmount={totalAmount}/>
+              return <ListDay day={date} calls={calls}/>
             })}
         </div>
     </div>
