@@ -1,7 +1,8 @@
 .App {
   min-width: 100%;
   min-height: 100vh;
-  background: #E5E5E5;
+  background: #EAF0FA;
+  
 }
 .main-container {
   display: flex;
@@ -11,5 +12,4 @@
   display: flex;
   flex-direction: column;
   margin-left: 300px;
-  /* text-align: center; */
 }

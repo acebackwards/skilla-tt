@@ -15,13 +15,27 @@ import {ReactComponent as DownloadSVG} from '../../img/audio/download.svg'
 import PlaySVG from '../../img/audio/play.svg'
 import PauseSVG from '../../img/audio/pause.svg'
 
+import GreatRate from '../Rate/GreatRate/GreatRate'
+import RecognizeRate from '../Rate/RecognizeRate/RecognizeRate'
 import EmployeeSVG from '../../img/employee.svg'
 
 export default function ListItem({item}) {
   const [showRecord, setShowRecord] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [durationAudio, setDurationAudio] = useState('')
+  const [rate, setRate] = useState(null)
 
+  // call rate 
+  function callRate () {
+    console.log(item.errors) 
+    if (item.errors.length === 1) {
+      return <div className='call-rate-none'>
+            Скрипт не использован
+          </div>
+    } else {
+      return <RecognizeRate/>
+    }
+  }
   // total audio duration
   const calculateTime = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -74,13 +88,7 @@ export default function ListItem({item}) {
         </div>
         <div className="listing-item__title">{item.source === 'yandex' ? 'Yandex' : item.source === 'google' ? 'Google' : item.source}</div>
         <div className="listing-item__title">
-          {/* {rate === 1 ? 
-          <BadRate/> : rate === 2 ? 
-          <GoodRate/> : rate === 3 ? 
-          <GreatRate/> : rate === 0 ?  */}
-          {/* <div className='call-rate-none'>
-            Скрипт не использован
-          </div> : <RecognizeRate/>} */}
+          {callRate()}
         </div>
         <div className="listing-item__title-duration">
           {showRecord ?
