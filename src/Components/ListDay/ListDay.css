@@ -1,0 +1,9 @@
+.list-day {
+    display: flex;
+    margin: 25px 0 10px ;
+}
+.list-day .list-day__amount {
+    color: #899CB1;
+    font-size: 0.6rem;
+    margin-left: 3px;
+}

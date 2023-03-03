@@ -1,0 +1,15 @@
+.listing-container {
+    background: none;
+}
+.listing-content {
+    margin: 100px 0 0 0;
+    background: #fff;
+    padding: 0 25px;
+    border-radius: 8px;
+}
+.listing-item {
+    height: 55px;
+    display: grid;
+    grid-template-columns: 5% 10% 8% 3% 20% 15% 14% 25%;
+    align-items: center;
+}

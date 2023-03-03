@@ -1,0 +1,50 @@
+.call-rate {
+    position: relative;
+    display: flex;
+}
+.call-rate img {
+    margin-right: 10px;
+}
+.call-rate-recognize {
+    cursor: pointer;
+    background: none;
+    border: 1px solid #005FF8;
+    color: #005FF8;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 9px 24px;
+}
+.call-rate-none {
+    color: #EA1A4F;
+}
+.call-rate-recognize:hover {
+    background: #005FF8;
+    color: #FFFFFF;
+}
+
+
+.call-rate__great {
+    border: 1px solid #00A775;
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: #00A775;
+    font-weight: 400;
+    background: #DBF8EF;
+
+}
+.call-rate__good {
+    border: 1px solid #ADBFDF;
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: #122945;
+    font-weight: 400;
+    background: #D8E4FB;
+}
+.call-rate__bad {
+    border: 1px solid #EA1A4F;
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: #EA1A4F;
+    font-weight: 400;
+    background: #FEE9EF;
+}

@@ -1,0 +1,9 @@
+.container {
+    width: auto;
+    padding: 0 10%;
+    background: #ffffff;
+}
+.header-content {
+    /* background: ; */
+    height: 55px;
+}

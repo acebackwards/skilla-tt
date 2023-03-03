@@ -1,0 +1,23 @@
+.listing-item-underline {
+    border-top: 1px solid #EAF0FA;
+    text-align: left;
+}
+
+.listing-item__title-avatar {
+    display: flex;
+    justify-content: space-between;
+}
+.listing-item__title-type {
+    margin-left: 10px;
+}
+.listing-item__title-employee {
+    display: flex;
+    align-items: baseline;
+}
+
+.listing-item__title-time {
+    margin-left: 4px;
+}
+.listing-item__title-duration {
+    text-align: right;
+}
