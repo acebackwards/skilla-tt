@@ -14,11 +14,13 @@ import { getList } from '../../Api/Api'
 export default function Listing() {
   const [calls, setCalls] = useState([])
   const [dateList, setDateList] = useState([])
+  const [totalAmount, setTotalAmount] = useState(0)
   
   let filteredDates = new Set()
   useEffect(() => {
     getList().then(data => {
       setCalls(data.results)
+      setTotalAmount(data.total_rows)
       data.results.map(item => {
         filteredDates.add(item.date_notime)
         setDateList(Array.from(filteredDates))
@@ -39,7 +41,7 @@ export default function Listing() {
                 <div className="listing-item__title-duration">Длительность</div>
             </div>
             {dateList?.map(date => {
-              return <ListDay day={date} calls={calls}/>
+              return <ListDay day={date} calls={calls} totalAmount={totalAmount}/>
             })}
         </div>
     </div>

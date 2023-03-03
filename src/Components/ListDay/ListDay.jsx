@@ -2,12 +2,10 @@ import React from 'react'
 import ListItem from '../ListItem/ListItem'
 import './ListDay.css'
 
-import TypeSVG from '../../img/type/incoming.svg'
-import AvatarSVG from '../../img/avatar.svg'
-import EmployeeSVG from '../../img/employee.svg'
 
-export default function ListDay({day, calls}) {
-  console.log(day)
+
+export default function ListDay({day, calls, totalAmount}) {
+  // console.log(day)
   let today = new Date()
   let now = today.toISOString().split('T')[0]
 

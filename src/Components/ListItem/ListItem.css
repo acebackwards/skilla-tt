@@ -15,10 +15,71 @@
     display: flex;
     align-items: baseline;
 }
+.listing-item__title-partner {
+    font-size: 0.9rem;
+}
+.listing-item__title-partner div:first-child{
+    width: 90%;
+    overflow: hidden;
+}
+.listing-item__title-partner__secondary{
+    color: #5E7793
 
+}
 .listing-item__title-time {
     margin-left: 4px;
+    
 }
 .listing-item__title-duration {
     text-align: right;
+    position: relative;
+}
+.listing-item__title-duration-time {
+    cursor: pointer;
+}
+
+.listing-item__record-track {
+    width: 150px;
+    height: 5px;
+    background-color: #ADBFDF;
+    border-radius: 18px;
+}
+ 
+.listing-item__record-time {
+    width: 0;
+    height: 5px;
+    border-radius: 18px;
+    background-color: #002CFB;
+}
+.listing-item__record {
+    padding: 5px 10px 3px;
+    background: #EAF0FA;
+    border-radius: 48px;
+    position: relative;
+}
+.listing-item__record-track {
+    position: absolute;
+    top: 45%;
+    left: 27%;
+}
+.listing-item__record-duration {
+    position: absolute;
+    font-size: 0.9rem;
+    left: 5%;
+    top: 25%;
+}
+
+.listing-item__record-play {
+    cursor: pointer;
+    position: absolute;
+    left: 17%;
+    top: 6px;
+}
+.listing-item__control-button {
+    margin-left: 10px;
+}
+.listing-item__control-button:hover * {
+    cursor: pointer;
+    fill: #005FF8;
+
 }
