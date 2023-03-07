@@ -6,16 +6,21 @@ import './ListDay.css'
 
 
 const ListDay = ({day, calls, callType, sortType}) => {
-  // console.log(day)
+    // количество звонков в определенный день 
     const [totalAmount, setTotalAmount] = useState(0)
+
+    // сегодняшняя дата
     let today = new Date()
     let now = today.toISOString().split('T')[0]
 
+    // при изменении массива звонков (как например сортировка) - общее колво звонков
     useEffect(() => {
         getDayList(day)
         .then(data => setTotalAmount(() => data))
     }, [calls])
 
+    // заголовок для листинга звонков по дням 
+    // если текущая дата совпадает с датой звонка - заголовок не отображается
     const whichDay = () => {
         if (day === now && sortType === 1) {
             return <div className='list-day'>
@@ -42,7 +47,7 @@ const ListDay = ({day, calls, callType, sortType}) => {
     }
     return (
         <div>
-            {whichDay()}
+            {whichDay()} 
             {calls.map((item) => {
                 if (item.date_notime === day && item.in_out === callType) {
                       return <ListItem item={item}/>
@@ -50,11 +55,6 @@ const ListDay = ({day, calls, callType, sortType}) => {
                     return <ListItem item={item}/>
                 }
             })}
-            {/* <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={0}/>
-            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={1}/>
-            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={2}/>
-            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={3}/>
-            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={null}/> */}
         </div>
     )
 }

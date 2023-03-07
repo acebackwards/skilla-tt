@@ -41,6 +41,8 @@ export default function Listing() {
         })
     }, [])
 
+    // сортировка звонков по датам от старой к новой и наоборот
+    // плюс сортировка списка уникальных дат в порядке возрастания и обратно
     function sortCalls(type) {
         let newCalls = JSON.parse(JSON.stringify(calls))
         if (type === 0) { 
