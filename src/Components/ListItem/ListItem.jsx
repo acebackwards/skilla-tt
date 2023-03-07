@@ -23,54 +23,55 @@ import EmployeeSVG from '../../img/employee.svg'
 // import { getRecord } from '../../Api/Api'
 
 export default function ListItem({item}) {
+  // статус показа аудиоплеера
   const [showRecord, setShowRecord] = useState(false)
+  // статус воспроизведения аудио
   const [isPlaying, setIsPlaying] = useState(false)
+  // длительность аудиодорожки, переведенная в строку в calculateTime
   const [durationAudio, setDurationAudio] = useState('')
   // const [rate, setRate] = useState(null)
   // если в апи прописать систему оценок, то можно отображать Отлично, хорошо, плохо и тд с помощью callRate()
   let rate = 0
 
-  // call rate 
-  function callRate () {
-    if (rate === 3) {
-      return <GreatRate/>
-    } else if (rate === 2) {
-      return <GoodRate/>
-    } else if (rate === 1) {
-      return <BadRate/>
+  // отображение необходимого компонента в зависимости от оценки звонка
+    function callRate () {
+        if (rate === 3) {
+            return <GreatRate/>
+        } else if (rate === 2) {
+            return <GoodRate/>
+        } else if (rate === 1) {
+            return <BadRate/>
+        }
+        if (item.errors.length === 1) {
+            return <div className='call-rate-none'>
+                    {'Скрипт не использован'}
+                </div>
+        } else {
+            return <RecognizeRate/>
+        }
     }
-    if (item.errors.length === 1) {
-      return <div className='call-rate-none'>
-            Скрипт не использован
-          </div>
-    } else {
-      return <RecognizeRate/>
-    }
-  }
 
-  // total audio duration
-  const calculateTime = (secs) => {
-    const minutes = Math.floor(secs / 60);
-    const seconds = Math.floor(secs % 60);
-    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    setDurationAudio(`${minutes}:${returnedSeconds}`)
-  }
+  // общая длительность звуковой дорожки
+    const calculateTime = (secs) => {
+        const minutes = Math.floor(secs / 60);
+        const seconds = Math.floor(secs % 60);
+        const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+        setDurationAudio(`${minutes}:${returnedSeconds}`)
+    }
 
   // click to play audio
   function playAudio() {
-    let audio = document.getElementById('audio')
-    let time = document.querySelector('.listing-item__record-time')
+      let audio = document.getElementById('audio')
+      let time = document.querySelector('.listing-item__record-time')
     
-    audio.play()
-    calculateTime(audio.duration)
+      audio.play()
+      calculateTime(audio.duration)
 
-    setInterval(function() {
-      let audioTime = Math.round(audio.currentTime)
-      // Получаем всё время песни
-      let audioLength = Math.round(audio.duration)
-        // Назначаем ширину элементу time
-        time.style.width = (audioTime * 100) / audioLength + '%';
-    }, 10)
+      setInterval(function() {
+          let audioTime = Math.round(audio.currentTime)
+          let audioLength = Math.round(audio.duration)
+          time.style.width = (audioTime * 100) / audioLength + '%';
+      }, 10)
   }
   // click to pause audio
   function pauseAudio() {
