@@ -13,22 +13,67 @@ export default function Listing() {
     const [totalAmount, setTotalAmount] = useState(0)
     // состояние дропдаун меню - true, если открыто
     const [showCallType, setShowCallType] = useState(false)
+    
+    const [showSortType, setShowSortType] = useState(false)
     // тип звонка 0 - исходящие, 1 - входящие, 2 - все звонки
     const [callType, setCallType] = useState(2)
+    // тип сортировки, 0 - по умолчанию от новой даты к старой
+    const [sortType, setSortType] = useState(0)
 
     // Set необходим для создания массива с уникальными датами
     let filteredDates = new Set()
     useEffect(() => {
         // получение всех звонков и запись их в массив + заполнение Set'a уникальными датами
         getList().then(data => {
+            data.results.sort((a, b) => {
+                let aSort = new Date(a.date)
+                let bSort = new Date(b.date)
+                if (aSort < bSort) return 1
+                else return -1
+            })
             setCalls(data.results)
+            console.log(data.results[0].date)
             setTotalAmount(data.total_rows)
-            data.results.map(item => {
+            data.results.forEach(item => {
             filteredDates.add(item.date_notime)
             setDateList(Array.from(filteredDates))
             })
-    })
+        })
     }, [])
+
+    function sortCalls(type) {
+        let newCalls = JSON.parse(JSON.stringify(calls))
+        if (type === 0) { 
+            newCalls.sort((a, b) => {
+                let aSort = new Date(a.date)
+                let bSort = new Date(b.date)
+                if (aSort < bSort) return 1
+                else return -1
+            }) 
+            dateList.sort((a, b) => {
+                let aSort = new Date(a)
+                let bSort = new Date(b)
+                if (aSort < bSort) return 1
+                else return -1
+            })
+        } else {
+            newCalls.sort((a, b) => {
+                let aSort = new Date(a.date)
+                let bSort = new Date(b.date)
+                if (aSort < bSort) return -1
+                else return 1
+            })
+            dateList.sort((a, b) => {
+                let aSort = new Date(a)
+                let bSort = new Date(b)
+                if (aSort < bSort) return -1
+                else return 1
+            })
+        }
+        setSortType(type)
+        setCalls(newCalls)
+    }
+
     return (
         <div className='container listing-container'>
             <div className='listing-options'>
@@ -50,6 +95,21 @@ export default function Listing() {
                         </div>
                     </div> }
                 </div>
+                <div className='listing-options__item' onClick={() => setShowSortType(prev => !prev)}>
+                    <div className={`listing-options__item-title ${showSortType && 'listing-options-active '}`}>
+                        {sortType === 0 ? 'От новой к старой' : 'От старой к новой'}
+                        {showSortType ? <DropdownSVG transform='rotate(180)'/> : <DropdownSVG />}
+                    </div>
+                    {showSortType && 
+                    <div className='listing-options__menu'>
+                        <div className='listing-options__menu-choose' onClick={() => sortCalls(0)}>
+                            {'От новой к старой'}
+                        </div>
+                        <div className='listing-options__menu-choose' onClick={() => sortCalls(1)}>
+                            {'От старой к новой'}
+                        </div>
+                    </div> }
+                </div>
             </div>
             <div className='listing-content'>
                 <div className='listing-item'>
@@ -60,10 +120,10 @@ export default function Listing() {
                     <div className="listing-item__title">{'Звонок'}</div>
                     <div className="listing-item__title">{'Источник'}</div>
                     <div className="listing-item__title">{'Оценка'}</div>
-                    <div className="listing-item__title-duration">Длительность</div>
+                    <div className="listing-item__title-duration">{'Длительность'}</div>
                 </div>
                 {dateList?.map(date => {
-                    return <ListDay day={date} calls={calls} callType={callType}/>
+                    return <ListDay day={date} calls={calls} callType={callType} sortType={sortType}/>
                 })}
             </div>
         </div>

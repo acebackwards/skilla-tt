@@ -18,13 +18,13 @@ import PauseSVG from '../../img/audio/pause.svg'
 import GreatRate from '../Rate/GreatRate/GreatRate'
 import RecognizeRate from '../Rate/RecognizeRate/RecognizeRate'
 import EmployeeSVG from '../../img/employee.svg'
-import { getRecord } from '../../Api/Api'
+// import { getRecord } from '../../Api/Api'
 
 export default function ListItem({item}) {
   const [showRecord, setShowRecord] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [durationAudio, setDurationAudio] = useState('')
-  const [rate, setRate] = useState(null)
+  // const [rate, setRate] = useState(null)
 
   useEffect(() => {
     // getRecord(item.id, item.partnership_id)

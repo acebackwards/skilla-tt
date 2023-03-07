@@ -16,6 +16,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-right: 10px;
+}
+.listing-options__item-title svg {
+    margin-left: 5px;
 }
 
 .listing-options__item-title:hover svg path, .listing-options__item-title:hover {
@@ -35,7 +39,7 @@
     z-index: 1;
     background: white;
     width: 200px;
-    right: -5px;
+    right: 5px;
     top: 30px;
     border-radius: 4px;
 }

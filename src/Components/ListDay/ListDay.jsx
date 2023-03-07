@@ -5,50 +5,58 @@ import './ListDay.css'
 
 
 
-export default function ListDay({day, calls, callType}) {
+const ListDay = ({day, calls, callType, sortType}) => {
   // console.log(day)
-  const [totalAmount, setTotalAmount] = useState(0)
-  let today = new Date()
-  let now = today.toISOString().split('T')[0]
+    const [totalAmount, setTotalAmount] = useState(0)
+    let today = new Date()
+    let now = today.toISOString().split('T')[0]
 
-  useEffect(() => {
-    getDayList(day)
-    .then(data => setTotalAmount(() => data))
-  }, [])
-  function whichDay () {
-    if (day === now) {
-      return null
-    } else if ((new Date(now) - new Date(day)) / (1000 * 60 * 60 * 24) === 1) {
-      return <div className='list-day'>
-        вчера
+    useEffect(() => {
+        getDayList(day)
+        .then(data => setTotalAmount(() => data))
+    }, [calls])
+
+    const whichDay = () => {
+        if (day === now && sortType === 1) {
+            return <div className='list-day'>
+                сегодня
+                <div className='list-day__amount'>{totalAmount ? totalAmount : null}</div>
+            </div>
+        } else if (day === now) {
+            return null
+        } else if ((new Date(now) - new Date(day)) / (1000 * 60 * 60 * 24) === 1) {
+            return <div className='list-day'>
+          вчера
+          <div className='list-day__amount'>{totalAmount ? totalAmount : null}</div>
+        </div>
+      } else {
+        return <div className='list-day'>
+        {new Date(day).toLocaleString('ru', 
+        {
+          day: 'numeric',
+          month: 'long'
+        })}
         <div className='list-day__amount'>{totalAmount ? totalAmount : null}</div>
       </div>
-    } else {
-      return <div className='list-day'>
-      {new Date(day).toLocaleString('ru', 
-      {
-        day: 'numeric',
-        month: 'long'
-      })}
-      <div className='list-day__amount'>{totalAmount ? totalAmount : null}</div>
-    </div>
+      }
     }
-  }
-  return (
-    <div>
-        {whichDay()}
-        {calls.map((item) => {
-          if (item.date_notime === day && item.in_out === callType) {
-            return <ListItem item={item}/>
-          } else if (item.date_notime === day && callType === 2) {
-            return <ListItem item={item}/>
-          }
-        })}
-        {/* <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={0}/>
-        <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={1}/>
-        <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={2}/>
-        <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={3}/>
-        <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={null}/> */}
-    </div>
-  )
+    return (
+        <div>
+            {whichDay()}
+            {calls.map((item) => {
+                if (item.date_notime === day && item.in_out === callType) {
+                      return <ListItem item={item}/>
+                } else if (item.date_notime === day && callType === 2) {
+                    return <ListItem item={item}/>
+                }
+            })}
+            {/* <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={0}/>
+            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={1}/>
+            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={2}/>
+            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={3}/>
+            <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={null}/> */}
+        </div>
+    )
 }
+
+export default ListDay
