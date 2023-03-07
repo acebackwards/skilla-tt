@@ -15,6 +15,8 @@ import {ReactComponent as DownloadSVG} from '../../img/audio/download.svg'
 import PlaySVG from '../../img/audio/play.svg'
 import PauseSVG from '../../img/audio/pause.svg'
 
+import BadRate from '../Rate/BadRate/BadRate'
+import GoodRate from '../Rate/GoodRate/GoodRate'
 import GreatRate from '../Rate/GreatRate/GreatRate'
 import RecognizeRate from '../Rate/RecognizeRate/RecognizeRate'
 import EmployeeSVG from '../../img/employee.svg'
@@ -25,14 +27,18 @@ export default function ListItem({item}) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [durationAudio, setDurationAudio] = useState('')
   // const [rate, setRate] = useState(null)
+  // если в апи прописать систему оценок, то можно отображать Отлично, хорошо, плохо и тд с помощью callRate()
+  let rate = 0
 
-  useEffect(() => {
-    // getRecord(item.id, item.partnership_id)
-    // .then(res => console.log(res))
-  }, [])
   // call rate 
   function callRate () {
-    // console.log(item.errors) 
+    if (rate === 3) {
+      return <GreatRate/>
+    } else if (rate === 2) {
+      return <GoodRate/>
+    } else if (rate === 1) {
+      return <BadRate/>
+    }
     if (item.errors.length === 1) {
       return <div className='call-rate-none'>
             Скрипт не использован
@@ -41,6 +47,7 @@ export default function ListItem({item}) {
       return <RecognizeRate/>
     }
   }
+
   // total audio duration
   const calculateTime = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -93,7 +100,7 @@ export default function ListItem({item}) {
         </div>
         <div className="listing-item__title">{item.source === 'yandex' ? 'Yandex' : item.source === 'google' ? 'Google' : item.source}</div>
         <div className="listing-item__title">
-          {callRate()}
+          {''}
         </div>
         <div className="listing-item__title-duration">
           {showRecord ?
