@@ -39,11 +39,17 @@ export const getDayList = async (day) => {
     }
 }
 
-export const getRecord = async () => {
+export const getRecord = async (id, partner) => {
 
     let axiosConfig = {
+        params: {
+            record: `${id}`,
+            partnership_id: partner
+        },
         headers: {
-            'Content-Type': 'application/json',
+            // 'Content-Disposition': `filename="record.mp3"`,
+            'Content-Type': 'audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3',
+            // 'Content-Transfer-Encoding': 'binary',
             "Authorization": `Bearer testtoken`,
         }
     };

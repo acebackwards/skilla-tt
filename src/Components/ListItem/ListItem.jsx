@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './ListItem.css'
 
 import AudioTrack from '../../audio/1.mp3'
@@ -18,6 +18,7 @@ import PauseSVG from '../../img/audio/pause.svg'
 import GreatRate from '../Rate/GreatRate/GreatRate'
 import RecognizeRate from '../Rate/RecognizeRate/RecognizeRate'
 import EmployeeSVG from '../../img/employee.svg'
+import { getRecord } from '../../Api/Api'
 
 export default function ListItem({item}) {
   const [showRecord, setShowRecord] = useState(false)
@@ -25,9 +26,13 @@ export default function ListItem({item}) {
   const [durationAudio, setDurationAudio] = useState('')
   const [rate, setRate] = useState(null)
 
+  useEffect(() => {
+    // getRecord(item.id, item.partnership_id)
+    // .then(res => console.log(res))
+  }, [])
   // call rate 
   function callRate () {
-    console.log(item.errors) 
+    // console.log(item.errors) 
     if (item.errors.length === 1) {
       return <div className='call-rate-none'>
             Скрипт не использован

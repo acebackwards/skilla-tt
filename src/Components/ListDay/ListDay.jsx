@@ -5,7 +5,7 @@ import './ListDay.css'
 
 
 
-export default function ListDay({day, calls}) {
+export default function ListDay({day, calls, callType}) {
   // console.log(day)
   const [totalAmount, setTotalAmount] = useState(0)
   let today = new Date()
@@ -38,8 +38,11 @@ export default function ListDay({day, calls}) {
     <div>
         {whichDay()}
         {calls.map((item) => {
-          return item.date_notime === day ? 
-          <ListItem item={item}/> : null
+          if (item.date_notime === day && item.in_out === callType) {
+            return <ListItem item={item}/>
+          } else if (item.date_notime === day && callType === 2) {
+            return <ListItem item={item}/>
+          }
         })}
         {/* <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={0}/>
         <ListItem type={TypeSVG} avatar={AvatarSVG} employee={EmployeeSVG} rate={1}/>
